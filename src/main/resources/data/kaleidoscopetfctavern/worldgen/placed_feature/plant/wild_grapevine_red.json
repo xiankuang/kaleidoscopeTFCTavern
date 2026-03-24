@@ -1,0 +1,27 @@
+{
+  "feature": "kaleidoscopetfctavern:plant/wild_grapevine_red",
+  "placement": [
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "tfc:climate",
+      "min_temperature": 5.0,
+      "max_temperature": 80.0,
+      "min_rainfall": 0,
+      "max_rainfall": 2000,
+      "min_forest": "sparse",
+      "fuzzy": true
+    },
+    {
+      "type": "block_predicate_filter",
+      "predicate": {
+        "type": "tfc:air_or_empty_fluid"
+      }
+    }
+  ]
+}

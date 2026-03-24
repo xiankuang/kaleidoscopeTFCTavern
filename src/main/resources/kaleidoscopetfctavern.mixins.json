@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.xdpp.kaleidoscopetfctavern.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "kaleidoscopetfctavern.refmap.json",
+  "mixins": [
+    "TrellisBlockMixin",
+    "GrapevineTrellisBlockMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
