@@ -39,9 +39,9 @@ public abstract class PressingTubBlockEntityMixin {
         if (tfcFluidHandler.isPresent()) {
             final boolean[] success = {false};
             tfcFluidHandler.ifPresent(stackFluid -> {
-                FluidStack transfer = FluidUtil.tryFluidTransfer(stackFluid, self.getFluid(), IPressingTub.MAX_FLUID_AMOUNT, false);
+                FluidStack transfer = FluidUtil.tryFluidTransfer(self.getFluid(), stackFluid, IPressingTub.MAX_FLUID_AMOUNT, false);
                 if (!transfer.isEmpty()) {
-                    FluidUtil.tryFluidTransfer(stackFluid, self.getFluid(), IPressingTub.MAX_FLUID_AMOUNT, true);
+                    FluidUtil.tryFluidTransfer(self.getFluid(), stackFluid, IPressingTub.MAX_FLUID_AMOUNT, true);
                     ItemStack result = stackFluid.getContainer();
                     
                     if (!(target instanceof Player player) || !player.isCreative()) {

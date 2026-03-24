@@ -8,7 +8,9 @@
     "TrellisBlockMixin",
     "GrapevineTrellisBlockMixin",
     "PressingTubBlockMixin",
-    "PressingTubBlockEntityMixin"
+    "PressingTubBlockEntityMixin",
+    "ItemStackFluidHandlerMixin",
+    "BarrelBlockEntityMixin"
   ],
   "client": [
   ],
