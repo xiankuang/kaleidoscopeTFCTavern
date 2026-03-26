@@ -33,7 +33,6 @@ import java.util.function.Supplier;
  * <p>
  * 基于 Kaleidoscope Tavern 的 WildGrapevineBlock 修改
  * 支持动态设置主体方块，可用于创建多种不同的葡萄藤类型
- * 实现了剪切机制
  */
 @SuppressWarnings("deprecation")
 public class BaseWildGrapevineBlock extends GrowingPlantHeadBlock {
@@ -73,7 +72,7 @@ public class BaseWildGrapevineBlock extends GrowingPlantHeadBlock {
      * 设置方块属性、生长方向和碰撞形状
      * 注册默认的方块状态
      * 
-     * @param bodyBlockSupplier 主体方块供应商
+     * @param bodyBlockSupplier 主体方块
      */
     public BaseWildGrapevineBlock(Supplier<Block> bodyBlockSupplier) {
         super(PROPERTIES, Direction.DOWN, SHAPE, false, 0.15);
@@ -86,7 +85,7 @@ public class BaseWildGrapevineBlock extends GrowingPlantHeadBlock {
     /**
      * 右键交互方块
      * <p>
-     * 直接调用父类方法，目前未实现剪刀修剪功能
+     * 直接调用父类方法
      * 
      * @param state 方块状态
      * @param level 世界

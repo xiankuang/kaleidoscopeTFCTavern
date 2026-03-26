@@ -53,7 +53,7 @@ public class BaseWildGrapevinePlantBlock extends GrowingPlantBodyBlock {
      * <p>
      * 设置方块属性、生长方向和碰撞形状
      * 
-     * @param headBlockSupplier 头部方块供应商
+     * @param headBlockSupplier 头部方块
      */
     public BaseWildGrapevinePlantBlock(Supplier<Block> headBlockSupplier) {
         super(PROPERTIES, Direction.DOWN, SHAPE, false);

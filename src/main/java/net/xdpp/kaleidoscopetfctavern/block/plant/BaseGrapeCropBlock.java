@@ -74,9 +74,9 @@ public class BaseGrapeCropBlock extends Block {
      * 构造葡萄作物方块
      * <p>
      * 设置方块属性、注册默认状态
-     * 初始化葡萄物品供应商
+     * 初始化葡萄结果部分
      * 
-     * @param grapeItemSupplier 葡萄物品供应商
+     * @param grapeItemSupplier 葡萄结果部分
      */
     public BaseGrapeCropBlock(Supplier<Item> grapeItemSupplier) {
         super(Properties.of()

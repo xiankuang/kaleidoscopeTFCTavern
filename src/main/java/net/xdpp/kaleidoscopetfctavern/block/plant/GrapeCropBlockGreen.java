@@ -78,7 +78,7 @@ public class GrapeCropBlockGreen extends Block {
     /**
      * 随机刻执行
      * <p>
-     * 检查方块是否能继续存活，如果不能则销毁
+     * 检查方块是否能继续生长，如果不能则切换为枯萎状态
      * 检查光照是否足够，如果足够则尝试生长
      * 
      * @param state 方块状态
