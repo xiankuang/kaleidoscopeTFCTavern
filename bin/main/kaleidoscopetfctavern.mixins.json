@@ -9,7 +9,8 @@
     "PressingTubBlockEntityMixin"
   ],
   "client": [
-    "BarrelRecipeCategoryMixin"
+    "BarrelRecipeCategoryMixin",
+    "PressingTubCategoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
