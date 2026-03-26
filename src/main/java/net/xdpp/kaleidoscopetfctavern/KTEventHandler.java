@@ -1,9 +1,7 @@
-package net.xdpp.kaleidoscopetfctavern.mixin;
+package net.xdpp.kaleidoscopetfctavern;
 
 import com.github.ysbbbbbb.kaleidoscopetavern.block.plant.TrellisBlock;
-import net.xdpp.kaleidoscopetfctavern.block.properties.GrapevineType;
 import net.xdpp.kaleidoscopetfctavern.init.ModBlocks;
-import net.xdpp.kaleidoscopetfctavern.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,41 +13,42 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.xdpp.kaleidoscopetfctavern.block.properties.GrapevineType;
+import net.xdpp.kaleidoscopetfctavern.init.ModItems;
 
 /**
- * TrellisBlock 混合类
+ * KT事件处理器
  * <p>
- * 让我们的葡萄藤也能放置到藤架上，同时兼容 TFC 的泥土和草方块
+ * 替代TrellisBlockMixin，使用事件监听器实现葡萄藤放置功能
+ * 兼容TFC的泥土和草方块作为土壤
  */
-@Mixin(value = TrellisBlock.class, remap = false)
-public abstract class TrellisBlockMixin {
+@Mod.EventBusSubscriber(modid = Kaleidoscopetfctavern.MODID)
+public class KTEventHandler {
 
     /**
-     * 注入到use方法前，处理我们的葡萄藤和TFC泥土/草方块
+     * 处理右键点击方块事件
      * <p>
-     * 允许将我们的葡萄藤放置到KT藤架上
-     * 同时支持TFC的泥土和草方块作为土壤
+     * 检测是否点击藤架且手持葡萄藤，如果是则尝试种植葡萄藤
+     * 支持普通泥土、TFC泥土和TFC草方块作为土壤
      * 
-     * @param state 方块状态
-     * @param level 世界
-     * @param pos 方块位置
-     * @param player 玩家
-     * @param hand 交互的手
-     * @param hitResult 交互结果
-     * @param cir 回调信息
+     * @param event 右键点击方块事件
      */
-    @Inject(method = "use(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;",
-            at = @At("HEAD"),
-            cancellable = true,
-            remap = false)
-    private void beforeUse(BlockState state, Level level, BlockPos pos, Player player,
-                           InteractionHand hand, BlockHitResult hitResult,
-                           CallbackInfoReturnable<InteractionResult> cir) {
+    @SubscribeEvent
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        Level level = event.getLevel();
+        BlockPos pos = event.getPos();
+        Player player = event.getEntity();
+        InteractionHand hand = event.getHand();
+        BlockHitResult hitResult = event.getHitVec();
         ItemStack itemInHand = player.getItemInHand(hand);
+
+        BlockState state = level.getBlockState(pos);
+        if (!(state.getBlock() instanceof TrellisBlock)) {
+            return;
+        }
 
         boolean isGrapevinePurple = itemInHand.is(ModItems.WILD_GRAPEVINE_PURPLE.get());
         boolean isGrapevineRed = itemInHand.is(ModItems.WILD_GRAPEVINE_RED.get());
@@ -61,13 +60,11 @@ public abstract class TrellisBlockMixin {
         }
 
         var type = state.getValue(TrellisBlock.TYPE);
-
         if (type != com.github.ysbbbbbb.kaleidoscopetavern.block.properties.TrellisType.SINGLE) {
             return;
         }
 
         BlockState belowState = level.getBlockState(pos.below());
-
         boolean isValidSoil = belowState.is(BlockTags.DIRT) ||
                               isInTag(belowState, "tfc", "dirt") ||
                               isInTag(belowState, "tfc", "grass");
@@ -92,7 +89,8 @@ public abstract class TrellisBlockMixin {
             if (!player.isCreative()) {
                 itemInHand.shrink(1);
             }
-            cir.setReturnValue(InteractionResult.SUCCESS);
+            event.setCancellationResult(InteractionResult.SUCCESS);
+            event.setCanceled(true);
         }
     }
 
@@ -104,7 +102,7 @@ public abstract class TrellisBlockMixin {
      * @param tagName 标签名
      * @return 是否在标签中
      */
-    private boolean isInTag(BlockState state, String namespace, String tagName) {
+    private static boolean isInTag(BlockState state, String namespace, String tagName) {
         var tag = net.minecraft.tags.TagKey.create(
             net.minecraft.core.registries.Registries.BLOCK,
             net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(namespace, tagName)

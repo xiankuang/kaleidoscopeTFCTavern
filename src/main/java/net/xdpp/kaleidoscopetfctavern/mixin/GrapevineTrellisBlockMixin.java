@@ -24,7 +24,7 @@ public abstract class GrapevineTrellisBlockMixin {
      * @param belowState 下方的方块状态
      * @return 是否可以在此方块上生长
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public boolean belowSupportGrow(BlockState belowState) {
         GrapevineTrellisBlock self = (GrapevineTrellisBlock) (Object) this;
         if (belowState.is(self)) {

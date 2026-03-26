@@ -61,3 +61,17 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "kaleidoscope_tavern"
+mandatory = true
+versionRange = "[1.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "tfc"
+mandatory = true
+versionRange = "[3.2,)"
+ordering = "AFTER"
+side = "BOTH"

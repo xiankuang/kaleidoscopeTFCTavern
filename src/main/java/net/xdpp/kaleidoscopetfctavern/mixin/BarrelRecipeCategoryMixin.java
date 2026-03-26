@@ -11,7 +11,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,16 +27,10 @@ import java.util.List;
 public abstract class BarrelRecipeCategoryMixin {
 
     /**
-     * 覆盖setRecipe方法，使用流体显示而不是桶显示
-     *
-     * @reason 需要将JEI中显示的"4桶流体"改为"4000ml流体"，参考TFC的流体显示方式
-     * @author xdpp
-     * @param builder JEI配方布局构建器
-     * @param recipe 酒桶配方
-     * @param focuses 焦点组
+     * 注入到setRecipe方法开始处，先清空builder的槽位
      */
-    @Overwrite
-    public void setRecipe(IRecipeLayoutBuilder builder, BarrelRecipe recipe, IFocusGroup focuses) {
+    @Inject(method = "setRecipe", at = @At("HEAD"), remap = false, cancellable = true)
+    public void onSetRecipeHead(IRecipeLayoutBuilder builder, BarrelRecipe recipe, IFocusGroup focuses, CallbackInfo ci) {
         int offsetX = 0;
         for (Ingredient input : recipe.getIngredients()) {
             List<ItemStack> list = Arrays.stream(input.getItems())
@@ -56,5 +52,7 @@ public abstract class BarrelRecipeCategoryMixin {
         ItemStack outputStack = recipe.result().copyWithCount(16);
         builder.addSlot(RecipeIngredientRole.OUTPUT, 152, 86)
                 .addItemStack(outputStack);
+
+        ci.cancel();
     }
 }
