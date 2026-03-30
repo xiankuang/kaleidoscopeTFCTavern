@@ -1,0 +1,11 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+      { "tag": "minecraft:signs" },
+      { "item": "minecraft:black_dye" }
+    ],
+    "result": {
+      "item": "kaleidoscope_tavern:chalkboard"
+    }
+  }

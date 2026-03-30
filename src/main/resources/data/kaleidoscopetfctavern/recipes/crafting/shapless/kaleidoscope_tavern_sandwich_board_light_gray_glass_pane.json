@@ -1,0 +1,11 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+      { "item": "kaleidoscope_tavern:base_sandwich_board" },
+      { "item": "minecraft:light_gray_stained_glass_pane" }
+    ],
+    "result": {
+      "item": "kaleidoscope_tavern:torchflower_sandwich_board"
+    }
+  }

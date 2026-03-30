@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "tfc:metal/chain/wrought_iron"
+    },
+    "b": {
+      "item": "tfc:lamp_glass"
+    }
+  },
+  "pattern": [
+    "a",
+    "b"
+  ],
+  "result": {
+    "item": "kaleidoscope_tavern:string_lights_colorless",
+    "count": 3
+  }
+}

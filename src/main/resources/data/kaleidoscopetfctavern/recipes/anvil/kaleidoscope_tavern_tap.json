@@ -1,0 +1,16 @@
+{
+    "type": "tfc:anvil",
+    "input": {
+      "item": "tfc:metal/sheet/cast_iron"
+    },
+    "result": {
+      "item": "kaleidoscope_tavern:tap"
+    },
+    "tier": 2,
+    "rules": [
+      "hit_last",
+      "bend_not_last",
+      "draw_not_last"
+    ],
+    "apply_forging_bonus": false
+  }

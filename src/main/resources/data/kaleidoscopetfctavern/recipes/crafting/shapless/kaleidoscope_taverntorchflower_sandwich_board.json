@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tfc:metal/sheet/cast_iron"
+    }
+  ],
+  "result": {
+    "item": "kaleidoscope_tavern:torchflower_sandwich_board"
+  }
+}

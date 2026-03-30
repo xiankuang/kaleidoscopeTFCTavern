@@ -1,0 +1,5 @@
+{
+  "replace": false,
+  "values": ["tfc:metal/rod/silver", "tfc:metal/rod/rose_gold", "tfc:metal/rod/nickel", "tfc:metal/rod/gold", "tfc:metal/rod/copper", "tfc:metal/rod/black_bronze", "tfc:metal/rod/bismuth_bronze", "tfc:metal/rod/bronze", "tfc:metal/rod/blue_steel", "tfc:metal/rod/red_steel", "tfc:metal/rod/black_steel", "tfc:metal/rod/steel", "tfc:metal/rod/cast_iron", "tfc:metal/rod/sterling_silver", "tfc:metal/rod/zinc", "tfc:metal/rod/tin", "tfc:metal/rod/wrought_iron"
+  ]
+}

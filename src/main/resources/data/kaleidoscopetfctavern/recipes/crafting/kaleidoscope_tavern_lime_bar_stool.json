@@ -3,7 +3,7 @@
     "category": "misc",
     "key": {
       "a": { "item": "minecraft:lime_wool" },
-      "b": { "tag": "forge:rods" },
+      "b": { "tag": "forge:metal_rods" },
       "c": { "tag": "tfc:lumber" }
     },
     "pattern": [ "a", "b", "c" ],

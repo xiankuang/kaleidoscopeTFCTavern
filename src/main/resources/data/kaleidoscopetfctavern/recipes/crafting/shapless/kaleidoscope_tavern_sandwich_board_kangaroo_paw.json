@@ -1,0 +1,11 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+      { "item": "kaleidoscope_tavern:base_sandwich_board" },
+      { "item": "tfc:plant/kangaroo_paw" }
+    ],
+    "result": {
+      "item": "kaleidoscope_tavern:torchflower_sandwich_board"
+    }
+  }

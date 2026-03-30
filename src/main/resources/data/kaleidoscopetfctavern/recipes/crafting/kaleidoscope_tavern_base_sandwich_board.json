@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+      "a": {
+        "tag": "tfc:lumber"
+      },
+      "b": {
+        "item": "kaleidoscopetfctavern:wild_grapevine_purple"
+      }
+    },
+    "pattern": [
+      "a",
+      "b"
+    ],
+    "result": {
+      "item": "kaleidoscope_tavern:base_sandwich_board"
+    }
+  }

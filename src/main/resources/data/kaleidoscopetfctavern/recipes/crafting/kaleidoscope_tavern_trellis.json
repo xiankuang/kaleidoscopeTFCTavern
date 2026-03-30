@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+      "a": {
+        "tag": "kaleidoscopetfctavern:grapevine"
+      }
+    },
+    "pattern": [
+      "a",
+      "a",
+      "a"
+    ],
+    "result": {
+      "item": "kaleidoscope_tavern:trellis",
+      "count": 12
+    }
+  }
